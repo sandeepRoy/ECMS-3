@@ -1,0 +1,46 @@
+name: Run Microservices
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Java
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+
+    - name: Build Configuration
+      run: |
+        cd Configuration
+        ./mvnw clean package -DskipTests
+        cd ..
+
+    - name: Build Category
+      run: |
+        cd Category
+        ./mvnw clean package -DskipTests
+        cd ..
+
+    - name: Build Product
+      run: |
+        cd Product
+        ./mvnw clean package -DskipTests
+        cd ..
+
+    - name: Set up Docker
+      uses: docker/setup-buildx-action@v3
+
+    - name: Build and run Docker containers
+      run: docker-compose up --build -d
+
