@@ -31,16 +31,6 @@ services:
     networks:
       - dodo-net
 
-  db:
-    image: mysql:8
-    ports:
-      - "3306:3306"
-    environment:
-      - MYSQL_DATABASE=dodo
-      - MYSQL_ROOT_PASSWORD=root
-    networks:
-      - dodo-net
-
 networks:
   dodo-net:
 

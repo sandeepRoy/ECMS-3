@@ -8,18 +8,9 @@ spring:
     show-sql: true
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQLDialect
-
-  # Local Datasource
+        dialect:  org.hibernate.dialect.PostgreSQLDialect
   datasource:
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/ecms_local
-    username: root
-    password: Online#9900
-    driver-class-name: com.mysql.cj.jdbc.Driver
-
-  # Docker Datasource
-#  datasource:
-#    url: jdbc:mysql://mysql:3306/ecommerce
-#    username: ecms
-#    password: ecms
-#    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:postgresql://dpg-d1e1fuemcj7s73bf7af0-a:5432/ecommerce_database_wzx1
+    username: ecommerce_database_wzx1_user
+    password: wlhHG6LXCirDqKOFqrjZzWWBL0wqVpUF
+    driver-class-name: org.postgresql.Driver
